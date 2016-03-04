@@ -26,6 +26,8 @@ while read url; do
     elif [ "$extension" == "tar" ]; then flag=""  # no compression
     fi
 
-    curl -L --silent $url | tar x $flag
+    curl --silent -L $url | tar x $flag
+    mkdir -p /app/lib
+    cp -R ./lib/* /app/lib/
   fi
 done < .vendor_urls
